@@ -6,6 +6,6 @@ const rootMutationResolvers = {
     // you'd have to implement this method yourself, would insert the item into a db
     return await addNewItem({ name, desc, ownerId })
   }
-}
+};
 
 export default rootMutationResolvers

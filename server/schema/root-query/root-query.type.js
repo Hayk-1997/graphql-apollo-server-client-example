@@ -5,6 +5,6 @@ const queryEntryPoints = `
     # returns an array of items
     items: [Item]
   }
-`
+`;
 
 export default queryEntryPoints

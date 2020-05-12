@@ -11,17 +11,17 @@ const ITEMS = [
     description: 'This is a test item 2',
     ownerId: 234
   }
-]
+];
 
 export function getItem (id) {
-  let target = null
+  let target = null;
 
   ITEMS.some((item) => {
     if (item.id === id) {
-      target = item
+      target = item;
       return true
     }
-  })
+  });
 
   return target
 }
@@ -43,9 +43,9 @@ export function addNewItem ({ name, desc, ownerId }) {
     name,
     desc,
     ownerId
-  }
+  };
 
-  ITEMS.push(item)
+  ITEMS.push(item);
 
   return item
 }

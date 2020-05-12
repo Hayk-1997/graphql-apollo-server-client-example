@@ -24,7 +24,7 @@ const SchemaDefinition = `
     query: RootQuery,
     mutation: RootMutation
   }
-`
+`;
 
 const schema = makeExecutableSchema({
   // Add the type definitions to the schema
@@ -37,6 +37,6 @@ const schema = makeExecutableSchema({
   ],
   // performs field lookups for a specific type
   resolvers
-})
+});
 
 export default schema

@@ -5,6 +5,6 @@ const userType = `
     # The user's username
     username: String!
   }
-`
+`;
 
 export default userType
