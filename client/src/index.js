@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
+import './assets/styles/main.css'
 // The ApolloClient allows you to call the GraphQL API server
 // and parses responses
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
@@ -25,9 +25,25 @@ const client = new ApolloClient({
 ReactDOM.render((
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <Route exact path='/add' component={AddItem} />
-          <Route exact path='/' component={ItemList} />
+        <div className="main-section">
+          <div className="left-form">
+            <Route exact path='/add' component={AddItem} />
+            <Route exact path='/' component={ItemList} />
+          </div>
+          <div className="right-background">
+            <div className="logo-background">
+                <img src="https://www.weconstruct.am/images/weconstruct-logo.png" alt=""/>
+            </div>
+          </div>
+          <footer>
+            <p>
+                &copy;
+                <a href="https://www.weconstruct.am/">
+                    We Construct
+                </a>
+                GraphQl presentation
+            </p>
+          </footer>
         </div>
       </Router>
     </ApolloProvider>
