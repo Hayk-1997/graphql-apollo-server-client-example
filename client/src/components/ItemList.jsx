@@ -1,57 +1,73 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'react-apollo'
-import itemQueries from '../queries/item.queries.js'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+import itemQueries from '../queries/item.queries.js';
 
 class ItemList extends React.Component {
-  render () {
-    const {
-            data
-          } = this.props
-
-    if (data.loading) {
-      return (<div>Loading</div>)
+    constructor (props) {
+        super(props);
+        this.state = {
+            data: {},
+            loading: true,
+        };
     }
 
-    if (data.error) {
-      console.log(data.error)
-      return (<div>An unexpected error occurred</div>)
+    componentDidUpdate () {
+        const { data } = this.props;
+        const  { loading } = this.state;
+        if (loading) {
+           this.setState({ data, loading: false });
+        }
     }
 
-    return (
-      <div>
-        <ul>
-          {data.items.map((item) => {
-            return (
-              <li key={item.id}>
-                {item.id} - {item.name} - {item.owner.username}
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    )
-  }
+    render () {
+        const { data, loading } = this.state;
+        if (data.loading) {
+            return (<div>Loading</div>);
+        }
+        if (data.error) {
+            return (<div>An unexpected error occurred</div>);
+        }
+        return (
+            <table className="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Owner ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    !loading && data.items.length ?
+                        (
+                           data.items.map((item) => {
+                                return (
+                                    <tr key={Math.random()}>
+                                        <th scope="row">{ item.id }</th>
+                                        <td>{ item.name }</td>
+                                        <td>{ item.description }</td>
+                                        <td>{ item.ownerId }</td>
+                                    </tr>
+                                )
+                            })
+                        ): null
+                }
+                </tbody>
+            </table>
+        );
+    }
 }
 
 ItemList.propTypes = {
-  // This structure is Apollo-specific
-  // the prop starts with a data root key
-  // and contains loading, error, and your graphql root fields
-  // that you're interested in pulling
-  // see: https://www.learnapollo.com/tutorial-react/react-02#Displaying[object Object]information[object Object]of[object Object]your[object Object]trainer
-  // under "Using query results in React components"
+    data: PropTypes.shape({
+        loading: PropTypes.bool,
+        error: PropTypes.object,
+        items: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired
+};
 
-  data: PropTypes.shape({
-    loading: PropTypes.bool,
-    error: PropTypes.object,
-    // This corresponds with the 'items' field in the 'ItemListQuery'
-    items: PropTypes.arrayOf(PropTypes.object),
-  }).isRequired
-}
+const ItemListView = graphql(itemQueries.getItemList)(ItemList);
 
-// wrap the graphql (Apollo) store around the component
-// and call the getItemList query when there is a need to fetch data
-const ItemListView = graphql(itemQueries.getItemList)(ItemList)
-
-export default ItemListView
+export default ItemListView;

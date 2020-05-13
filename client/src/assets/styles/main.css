@@ -4,20 +4,28 @@
     padding: 0;
 }
 
+.App {
+   display: flex;
+}
+
+.NavBar {
+    width: 100%;
+}
+
 .main-section {
     display: flex;
     justify-content: space-between;
     height: 100vh;
-    width: 100%;
+    width: 50%;
 }
 
 .left-form {
     height: 100%;
-    width: 50%;
+    width: 100%;
 }
 
 .right-background {
-    width: 50%;
+    width: 100%;
     height: 100%;
     background-color: #fb500c;
     display: flex;
