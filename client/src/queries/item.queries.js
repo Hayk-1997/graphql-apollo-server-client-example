@@ -7,6 +7,7 @@ export default {
     items {
       id
       name,
+      desc,
       owner {
         username
       }

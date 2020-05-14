@@ -44,10 +44,10 @@ class ItemList extends React.Component {
                         (
                            data.items.map((item) => {
                                 return (
-                                    <tr key={Math.random()}>
+                                    <tr key={item.id}>
                                         <th scope="row">{ item.id }</th>
                                         <td>{ item.name }</td>
-                                        <td>{ item.description }</td>
+                                        <td>{ item.desc }</td>
                                         <td>{ item.ownerId }</td>
                                     </tr>
                                 )
