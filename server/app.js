@@ -25,8 +25,8 @@ app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql'
 }));
 
-app.listen(3000, () => {
-  console.log('Listening on http://localhost:3000/');
-  console.info('GraphQL endpoint: http://localhost:3000/graphql');
-  console.info('GraphQL console: http://localhost:3000/graphiql');
+app.listen(3001, () => {
+  console.log('Listening on http://localhost:3001/');
+  console.info('GraphQL endpoint: http://localhost:3001/graphql');
+  console.info('GraphQL console: http://localhost:3001/graphiql');
 });

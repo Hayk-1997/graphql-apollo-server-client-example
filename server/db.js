@@ -8,7 +8,7 @@ const ITEMS = [
   {
     id: 2,
     name: 'Test Item 2',
-    description: 'This is a test item 2',
+    desc: 'This is a test item 2',
     ownerId: 234
   }
 ];
