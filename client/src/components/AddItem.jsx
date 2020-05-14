@@ -16,6 +16,7 @@ class AddItem extends Component {
     const { name, desc } = this.state;
     const ownerId = 1;
     this.props.mutate({variables: { name, desc, ownerId }});
+    const id = 1;
     this.props.history.push('/list');
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import itemQueries from '../queries/item.queries.js';
 
 class ItemList extends React.Component {
@@ -19,6 +19,10 @@ class ItemList extends React.Component {
            this.setState({ data, loading: false });
         }
     }
+
+    deleteItem = (id) => {
+        this.props.mutate({ variables: { id } });
+    };
 
     render () {
         const { data, loading } = this.state;
@@ -49,6 +53,12 @@ class ItemList extends React.Component {
                                         <td>{ item.name }</td>
                                         <td>{ item.desc }</td>
                                         <td>{ item.ownerId }</td>
+                                        <td>
+                                            <div className="buttons-group">
+                                                <button type="button" className="btn btn-danger" onClick={() => this.deleteItem(item.id)}>Delete</button>
+                                                <button type="button" className="btn btn-info">Edit</button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
                             })
@@ -65,9 +75,15 @@ ItemList.propTypes = {
         loading: PropTypes.bool,
         error: PropTypes.object,
         items: PropTypes.arrayOf(PropTypes.object),
-    }).isRequired
+    }).isRequired,
+    mutate: PropTypes.func.isRequired,
+    history: PropTypes.object,
 };
 
 const ItemListView = graphql(itemQueries.getItemList)(ItemList);
 
-export default ItemListView;
+export default compose(
+    graphql(itemQueries.getItemList),
+    graphql(itemQueries.deleteItem),
+)(ItemListView);
+
