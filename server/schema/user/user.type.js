@@ -4,6 +4,7 @@ const userType = `
     id: ID!
     # The user's username
     username: String!
+    desc: String!
   }
 `;
 

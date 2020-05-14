@@ -5,5 +5,5 @@ import RootMutation from './root-mutation/root-mutation.resolvers.js'
 export default {
   Item,
   RootQuery,
-  RootMutation
+  RootMutation,
 }

@@ -1,8 +1,8 @@
-import UserType from './user/user.type'
-import ItemType from './item/item.type'
+import UserType from './user/user.type';
+import ItemType from './item/item.type';
 
-import RootQuery from './root-query/root-query.type'
-import RootMutation from './root-mutation/root-mutation.type.js'
+import RootQuery from './root-query/root-query.type';
+import RootMutation from './root-mutation/root-mutation.type.js';
 
 import resolvers from './resolvers'
 
@@ -26,10 +26,17 @@ const SchemaDefinition = `
   }
 `;
 
+const SchemaDefinition1 = `
+  schema {
+    query: RootQuery,
+    mutation: UpdateMutation
+  }
+`;
 const schema = makeExecutableSchema({
   // Add the type definitions to the schema
   typeDefs: [
     SchemaDefinition,
+    // SchemaDefinition1,
     RootQuery,
     RootMutation,
     UserType,

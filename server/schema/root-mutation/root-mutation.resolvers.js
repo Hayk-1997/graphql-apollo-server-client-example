@@ -1,11 +1,15 @@
-import { addNewItem } from '../../db'
+import {addNewItem, updateItem, deleteItem} from '../../db';
 
 const rootMutationResolvers = {
-  // this corresponds to the `RootMutation.addItem` type
   async addItem (rootObj, { name, desc, ownerId }) {
-    // you'd have to implement this method yourself, would insert the item into a db
     return await addNewItem({ name, desc, ownerId })
-  }
+  },
+  async updateItem (rootObj, { name, desc, ownerId }) {
+    return await updateItem({ name, desc, ownerId })
+  },
+  async deleteItem (rootObj, { id }) {
+    return await deleteItem({ id })
+  },
 };
 
 export default rootMutationResolvers
