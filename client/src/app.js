@@ -25,40 +25,48 @@ export default () => {
 
     return (
         <div className="App">
-            <div className="NavBar">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <Link to="/list" className="nav-link">
-                                    Items<span className="sr-only">(current)</span>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/add" className="nav-link">
-                                    Add Item
-                                </Link>
-                            </li>
-                        </ul>
+            <div className="d-flex">
+
+                <div className="left-section">
+                    <div className="NavBar">
+                        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul className="navbar-nav mr-auto">
+                                    <li className="nav-item active">
+                                        <Link to="/list" className="nav-link">
+                                            Items<span className="sr-only">(current)</span>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/add" className="nav-link">
+                                            Add Item
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
-                </nav>
-                { renderComponent() }
-            </div>
-            <div className="main-section">
-                <div className="right-background">
-                    <div className="logo-background">
-                        <img src="https://www.weconstruct.am/images/weconstruct-logo.png" alt=""/>
+
+                    <div>
+                        { renderComponent() }
                     </div>
                 </div>
-                <footer>
-                    <p>
-                        &copy;
-                        <a href="https://www.weconstruct.am/">
-                            We Construct
-                        </a>
-                        GraphQl presentation
-                    </p>
-                </footer>
+                <div className="main-section">
+                    <div className="right-background">
+                        <div className="logo-background">
+                            <img src="https://www.weconstruct.am/images/weconstruct-logo.png" alt=""/>
+                        </div>
+                    </div>
+                    <footer>
+                        <p>
+                            &copy;
+                            <a href="https://www.weconstruct.am/">
+                                We Construct
+                            </a>
+                            GraphQl presentation
+                        </p>
+                    </footer>
+                </div>
             </div>
         </div>
     )

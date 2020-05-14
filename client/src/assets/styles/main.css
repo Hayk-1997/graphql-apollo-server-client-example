@@ -4,10 +4,6 @@
     padding: 0;
 }
 
-.App {
-   display: flex;
-}
-
 .NavBar {
     width: 100%;
 }
@@ -19,9 +15,9 @@
     width: 50%;
 }
 
-.left-form {
+.left-section {
     height: 100%;
-    width: 100%;
+    width: 50%;
 }
 
 .right-background {
