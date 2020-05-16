@@ -15,19 +15,18 @@ const ITEMS = [
 
 export function getItem (id) {
   let target = null;
-
   ITEMS.some((item) => {
-    if (item.id === id) {
+    if (parseInt(item.id) === parseInt(id)) {
       target = item;
-      return true
+      return true;
     }
   });
 
-  return target
+  return target;
 }
 
 export function getItems () {
-  return ITEMS
+  return ITEMS;
 }
 
 export function getUser () {
@@ -44,24 +43,27 @@ export function addNewItem ({ name, desc, ownerId }) {
     desc,
     ownerId
   };
-
   ITEMS.push(item);
 
-  return item
+  return item;
 }
 
 
-export function updateItem ({ name, desc, ownerId }) {
-  //
+export function updateItem ({ name, desc, id }) {
+  const findIndex = ITEMS.findIndex((item) => parseInt(item.id) === parseInt(id));
+  ITEMS[findIndex].name = name;
+  ITEMS[findIndex].desc = desc;
+
+  return {
+    id: id,
+    name: name,
+    desc: desc,
+  }
 }
 
 export function deleteItem ({ id }) {
-  let target = null;
-  ITEMS.some((item) => {
-    if (item.id !== id) {
-      target = item;
-      return true
-    }
-  });
-  return target;
+  const findIndex = ITEMS.findIndex((item) => parseInt(item.id) === parseInt(id));
+  ITEMS.splice(findIndex, 1);
+
+  return ITEMS;
 }
