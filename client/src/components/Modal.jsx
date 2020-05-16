@@ -10,11 +10,12 @@ class Modal extends Component {
             name: '',
             desc: '',
             id: '',
+            item: {}
         };
     }
 
     componentDidMount () {
-        const { item}  = this.props;
+        const { item }  = this.props;
         const { name, desc, id } = item;
         this.setState({ name, desc, id });
     }
@@ -24,6 +25,7 @@ class Modal extends Component {
         const { name, desc, id } = this.state;
         this.props.mutate({ variables: { name, desc, id } });
         this.props.toggleModal(false);
+        this.props.changeDataAfterUpdate({ name, desc, id })
     };
 
     closeModal = () => {
@@ -95,6 +97,7 @@ class Modal extends Component {
 Modal.propTypes = {
     item: PropTypes.object.isRequired,
     toggleModal: PropTypes.func.isRequired,
+    changeDataAfterUpdate: PropTypes.func.isRequired,
 };
 
 const updateItemMutation =  graphql(itemQueries.updateItem)(Modal);

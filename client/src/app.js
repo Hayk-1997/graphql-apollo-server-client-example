@@ -47,14 +47,14 @@ export default () => {
                         </nav>
                     </div>
 
-                    <div>
+                    <div className="mt-5">
                         { renderComponent() }
                     </div>
                 </div>
                 <div className="main-section">
                     <div className="right-background">
                         <div className="logo-background">
-                            <img src="https://www.weconstruct.am/images/weconstruct-logo.png" alt=""/>
+                            <img src="/static/media/newlogonobgwhite.2a74f711.png" alt=""/>
                         </div>
                     </div>
                     <footer>

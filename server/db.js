@@ -1,14 +1,32 @@
 const ITEMS = [
   {
     id: 1,
-    name: 'Test Item',
+    name: 'Web Development',
     desc: 'This is a test item',
     ownerId: 234
   },
   {
     id: 2,
-    name: 'Test Item 2',
+    name: 'Mobile development',
     desc: 'This is a test item 2',
+    ownerId: 234
+  },
+  {
+    id: 3,
+    name: 'Ios development',
+    desc: 'This is a test item 3',
+    ownerId: 234
+  },
+  {
+    id: 4,
+    name: 'Android development',
+    desc: 'This is a test item 4',
+    ownerId: 234
+  },
+  {
+    id: 5,
+    name: 'Software development',
+    desc: 'This is a test item 5',
     ownerId: 234
   }
 ];

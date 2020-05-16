@@ -16,14 +16,12 @@ class AddItem extends Component {
     const { name, desc } = this.state;
     const ownerId = 1;
     this.props.mutate({variables: { name, desc, ownerId }});
-    const id = 1;
-    this.props.history.push('/list');
   };
 
   render () {
     return (
         <form onSubmit={this.handleSave}>
-           <div className="col-6">
+           <div className="col-12">
                <div className="form-group">
                    <label htmlFor="desc">Description</label>
                    <input
@@ -46,7 +44,7 @@ class AddItem extends Component {
                        value={this.state.name}
                    />
                </div>
-               <button type="submit" className="btn btn-primary">Submit</button>
+               <button type="submit" className="btn btn-primary">Create</button>
            </div>
         </form>
     )
