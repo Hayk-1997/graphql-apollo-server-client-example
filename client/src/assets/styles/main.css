@@ -74,3 +74,7 @@ footer a:hover {
 .buttons-group button {
     margin: 7px;
 }
+
+.modal {
+    display: block;
+}

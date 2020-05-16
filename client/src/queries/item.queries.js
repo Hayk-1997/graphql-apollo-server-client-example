@@ -11,6 +11,7 @@ export default {
       desc,
       owner {
         username
+        
       }
     }
   }`,
@@ -22,10 +23,11 @@ export default {
     }
   }`,
 
-  updateItem: gql`mutation updateItem ($name: String!, $desc: String, $ownerId: ID!) {
-    updateItem(name: $name, desc: $desc, ownerId: $ownerId) {
+  updateItem: gql`mutation updateItem ($name: String!, $desc: String, $id: ID!) {
+    updateItem(name: $name, desc: $desc, id: $id) {
       id
       name
+      desc
     }
   }`,
 

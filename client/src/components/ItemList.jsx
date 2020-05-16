@@ -2,70 +2,109 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import itemQueries from '../queries/item.queries.js';
+import Modal from './Modal';
+
 
 class ItemList extends React.Component {
     constructor (props) {
         super(props);
+
         this.state = {
             data: {},
             loading: true,
+            isModalShow: false,
+            item: {},
         };
     }
 
+
     componentDidUpdate () {
+        const { loading} = this.state;
         const { data } = this.props;
-        const  { loading } = this.state;
-        if (loading) {
-           this.setState({ data, loading: false });
+        if (data.items.length && !data.loading && loading) {
+            this.setState({ data, loading: false });
         }
     }
 
-    deleteItem = (id) => {
+    deleteItem = id => {
+        const filteredItems = this.state.data.items.filter((item) => item.id !== id);
+        this.setState({ data: filteredItems, loading: true });
         this.props.mutate({ variables: { id } });
     };
 
+    openModal = item => {
+        this.setState({ item });
+        this.toggleModal(true);
+    };
+
+    toggleModal = arg => {
+        this.setState({ isModalShow: arg });
+    };
+
     render () {
-        const { data, loading } = this.state;
+        const { data, isModalShow, item } = this.state;
         if (data.loading) {
             return (<div>Loading</div>);
         }
         if (data.error) {
             return (<div>An unexpected error occurred</div>);
         }
+
         return (
-            <table className="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Owner ID</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    !loading && data.items.length ?
-                        (
-                           data.items.map((item) => {
-                                return (
-                                    <tr key={item.id}>
-                                        <th scope="row">{ item.id }</th>
-                                        <td>{ item.name }</td>
-                                        <td>{ item.desc }</td>
-                                        <td>{ item.ownerId }</td>
-                                        <td>
-                                            <div className="buttons-group">
-                                                <button type="button" className="btn btn-danger" onClick={() => this.deleteItem(item.id)}>Delete</button>
-                                                <button type="button" className="btn btn-info">Edit</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        ): null
-                }
-                </tbody>
-            </table>
+           <div>
+               <table className="table">
+                   <thead>
+                   <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">Name</th>
+                       <th scope="col">Description</th>
+                       <th scope="col">Owner ID</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   {
+                       !data.loading && data.items ?
+                           (
+                               data.items.map((item) => {
+                                   return (
+                                       <tr key={item.id}>
+                                           <th scope="row">{ item.id }</th>
+                                           <td>{ item.name }</td>
+                                           <td>{ item.desc }</td>
+                                           <td>{ item.owner.id }</td>
+                                           <td>
+                                               <div className="buttons-group">
+                                                   <button
+                                                       type="button"
+                                                       className="btn btn-danger"
+                                                       onClick={() => this.deleteItem(item.id)}>
+                                                       Delete
+                                                   </button>
+                                                   <button
+                                                       type="button"
+                                                       className="btn btn-info"
+                                                       onClick={() => this.openModal(item)}
+                                                   >
+                                                       Edit
+                                                   </button>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                   )
+                               })
+                           ): null
+                   }
+                   </tbody>
+               </table>
+               {
+                   isModalShow ? (
+                       <Modal
+                           item={item}
+                           toggleModal={this.toggleModal}
+                       />
+                   ) : null
+               }
+           </div>
         );
     }
 }
@@ -80,10 +119,15 @@ ItemList.propTypes = {
     history: PropTypes.object,
 };
 
-const ItemListView = graphql(itemQueries.getItemList)(ItemList);
+// const ItemListView = graphql(itemQueries.getItemList)(ItemList);
 
 export default compose(
-    graphql(itemQueries.getItemList),
-    graphql(itemQueries.deleteItem),
-)(ItemListView);
+    graphql(itemQueries.deleteItem, {
+        name : 'mutate'
+    }),
+    graphql(itemQueries.getItemList, {
+        name : 'data'
+    }),
+
+)(ItemList);
 
