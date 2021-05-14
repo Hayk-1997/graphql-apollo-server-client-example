@@ -72,6 +72,7 @@ class ItemList extends React.Component {
                        <th scope="col">#</th>
                        <th scope="col">Name</th>
                        <th scope="col">Description</th>
+                       <th scope="col">Owner</th>
                        <th scope="col">Actions</th>
                    </tr>
                    </thead>
@@ -85,6 +86,7 @@ class ItemList extends React.Component {
                                            <th scope="row">{ item.id }</th>
                                            <td>{ item.name }</td>
                                            <td>{ item.desc }</td>
+                                           <td>{ item.owner.id }</td>
                                            <td>
                                                <div className="buttons-group">
                                                    <button

@@ -11,7 +11,7 @@ export default {
       desc,
       owner {
         username
-        
+        id
       }
     }
   }`,

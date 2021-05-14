@@ -54,7 +54,7 @@ export default () => {
                 <div className="main-section">
                     <div className="right-background">
                         <div className="logo-background">
-                            <img src="/static/media/newlogonobgwhite.2a74f711.png" alt=""/>
+                            <img src="../assets/static/media/newlogonobgwhite.2a74f711.png" alt=""/>
                         </div>
                     </div>
                     <footer>

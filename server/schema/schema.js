@@ -26,17 +26,10 @@ const SchemaDefinition = `
   }
 `;
 
-const SchemaDefinition1 = `
-  schema {
-    query: RootQuery,
-    mutation: UpdateMutation
-  }
-`;
 const schema = makeExecutableSchema({
   // Add the type definitions to the schema
   typeDefs: [
     SchemaDefinition,
-    // SchemaDefinition1,
     RootQuery,
     RootMutation,
     UserType,
